@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+<ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content >
+<form [formGroup]="loginForm" (ngSubmit)="GoToMychild()">
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" #email formControlName="email"></ion-input>
+      <!--<span class="redClass" *ngIf="loginForm.get('email').errors.required">*</span>-->
+      <!--<span class="redClass" *ngIf="loginForm.get('email').errors.pattern">Enter Valid Email</span>-->
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" #password formControlName="password"></ion-input>
+      <!--<span class="redClass" *ngIf="loginForm.get('password').errors.required">*</span>-->
+    </ion-item>
+    <button ion-button full color="primary" type="submit" [disabled]="!loginForm.valid"> Login </button>
+    <label class="redClass">{{msg}}</label>
+  </form>
+  </ion-content>
