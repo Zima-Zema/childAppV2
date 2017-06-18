@@ -27,7 +27,7 @@ export class LocationTracker {
 
     let config = {
       desiredAccuracy: 0,
-      stationaryRadius: 1,
+      stationaryRadius: 5,
       distanceFilter: 1, 
       debug: true,
       interval: 2000,

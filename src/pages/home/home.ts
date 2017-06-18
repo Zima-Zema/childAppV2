@@ -58,30 +58,29 @@ export class HomePage {
   ) {
        this.backgroundMode.enable();
     
-    console.log("constructor")
-    let loader = this.loadingCtrl.create({
-      content: 'Loading...',
-      duration: 10000,
-      dismissOnPageChange: true
-    });
+    // console.log("constructor")
+    // let loader = this.loadingCtrl.create({
+    //   content: 'Loading...',
+    //   duration: 10000,
+    //   dismissOnPageChange: true
+    // });
 
-    loader.present().then(() => {
-      storage.get('child').then((val) => {
-        // console.log('Your name is', val);
-        this.selectedChild = val;
-        console.log(this.selectedChild);
-        loader.dismiss();
+    // loader.present().then(() => {
+    //   storage.get('child').then((val) => {
+    //     // console.log('Your name is', val);
+    //     this.selectedChild = val;
+    //     console.log(this.selectedChild);
+    //     loader.dismiss();
 
-      });
+    //   });
 
-    })
+    // })
   }
   /////////////////////////////////////////////////////////////////////////
   ionViewWillEnter() {
     let loader = this.loadingCtrl.create({
       content: 'Loading...',
-      duration: 10000,
-      dismissOnPageChange: true
+      
     });
     let toaster =this.toasteCtrl.create({
       message:'Sending Data',
@@ -93,13 +92,11 @@ export class HomePage {
         // console.log('Your name is', val);
         this.selectedChild = val;
         console.log(this.selectedChild);
-        loader.dismiss();
+        
         this.socket = io.connect("http://realtimetrack.eu-2.evennode.com/");
         this.socket.on('connect', () => {
           console.log("from child app", this.selectedChild.id);
           console.log("from child app>>Obj", this.selectedChild);
-
-          // write on stream !! Event "JOIN"
           this.socket.emit('joinChild', this.selectedChild.id);
         })
         this.socket.on('message', data => {
@@ -107,19 +104,21 @@ export class HomePage {
         })
 
       });
-
-    })
     this.locationTracker.startTracking();
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
     this.events.subscribe('OnlocationChanges',(location=>{
-      this.socket.emit("sendToParent", {
+    this.socket.emit("sendToParent", {
               to: this.selectedChild.parent_Id,
               data: location
             });
             toaster.present();
-}))
+}));
+      
+        loader.dismiss();
+    })
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
 
 
   }
