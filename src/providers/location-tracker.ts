@@ -27,13 +27,13 @@ export class LocationTracker {
 
     let config = {
       desiredAccuracy: 0,
-      stationaryRadius: 5,
+      stationaryRadius: 1,
       distanceFilter: 1, 
       debug: true,
       interval: 2000,
       stopOnTerminate:false,
       startOnBoot:true,
-      url:'https://childappv2-8fdff.firebaseio.com/Locations/-KmrkaAgaxbDSpL0eaV4.json',
+      url:'https://childappv2-8fdff.firebaseio.com/Locations.json',
       httpHeaders:{'Content-Type':'application/json; charset=utf-8'}
     };
 
@@ -57,27 +57,6 @@ export class LocationTracker {
 
     // Turn ON the background-geolocation system.
     this.backgroundGeolocation.start();
-
-
-    // Foreground Tracking
-
-	// let options = {
-	// 	frequency: 3000, 
-	// 	enableHighAccuracy: true
-	// };
-
-	// this.watch = this.geolocation.watchPosition(options).filter((p: any) => p.code === undefined).subscribe((position: Geoposition) => {
-
-	// 	console.log(position);
-
-	// 	// Run update inside of Angular's zone
-	// 	this.zone.run(() => {
-	// 		this.lat = position.coords.latitude;
-	// 		this.lng = position.coords.longitude;
-  //     this.speed=position.coords.speed;
-	// 	});
-
-	// });
 
   }
 
