@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http'
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { AgmCoreModule } from '@agm/core';
+//import { AgmCoreModule } from '@agm/core';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LocationTracker } from '../providers/location-tracker';
@@ -13,7 +13,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LoginPage } from '../pages/login/login'
 import { IonicStorageModule } from "@ionic/Storage";
 import { TrackApi } from '../pages/shared/track-api.service'
-
+import { GoogleMaps } from '@ionic-native/google-maps'
+import { BackgroundMode } from '@ionic-native/background-mode';
 @NgModule({
   declarations: [
     MyApp,
@@ -25,9 +26,7 @@ import { TrackApi } from '../pages/shared/track-api.service'
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAIGe8eBqbx4tql6fX-mMgrMTYZVMeUDh4'
-    })
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,6 +41,8 @@ import { TrackApi } from '../pages/shared/track-api.service'
     StatusBar,
     SplashScreen,
     TrackApi,
+    GoogleMaps,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

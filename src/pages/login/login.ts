@@ -39,6 +39,25 @@ export class LoginPage {
     });
     //this.menuCtrl.enable(false, 'myMenu');
     //Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')
+    let loader = this.loadingCtrl.create({
+      content: 'Loading...',
+      duration: 5000,
+    });
+
+    loader.present().then(() => {
+      storage.get('child').then((val) => {
+        // console.log('Your name is', val);
+        this.selectedChild = val;
+        console.log(this.selectedChild);
+        if (this.selectedChild != undefined) {
+          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.popToRoot();
+          loader.dismiss();
+        }
+
+      });
+
+    })
   }
 
   ionViewDidLoad() {
@@ -58,14 +77,14 @@ export class LoginPage {
 
     loader.present().then(() => {
       this.trackApi.getChilds().subscribe(data => {
-       // if(data){
-          this.childs = data;
+        // if(data){
+        this.childs = data;
         this.selectedChild = this.childs.find(p => p.email.toLowerCase() == email.toLowerCase() && p.password == pass)
         if (this.selectedChild != undefined) {
           //this.store.set('userId', this.selectedParent.id);
           this.storage.clear();
-          this.storage.set('child',this.selectedChild);
-          console.log("selectedChild",this.selectedChild);
+          this.storage.set('child', this.selectedChild);
+          console.log("selectedChild", this.selectedChild);
           this.navCtrl.setRoot(HomePage);
           this.navCtrl.popToRoot();
           loader.dismiss();
@@ -74,18 +93,18 @@ export class LoginPage {
           this.msg = "Wrong Email Or Password";
           loader.dismiss();
         }
-      // }
-      // else{
-      //   this.msg = "Connection TimeOut Try Again Later.";
-      //   loader.dismiss();
-      // }
+        // }
+        // else{
+        //   this.msg = "Connection TimeOut Try Again Later.";
+        //   loader.dismiss();
+        // }
 
       })
     })
 
-// loader.onDidDismiss(()=>{
-//    this.msg = "Connection TimeOut Try Again Later.";
-// })
+    // loader.onDidDismiss(()=>{
+    //    this.msg = "Connection TimeOut Try Again Later.";
+    // })
 
 
   }

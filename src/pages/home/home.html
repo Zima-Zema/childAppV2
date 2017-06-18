@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-	  <ion-grid>
+	  <!--<ion-grid>
     <ion-row>
       <ion-col col-9>
         <ion-input placeholder="Message" type="text" #msg value=""></ion-input>
@@ -17,15 +17,19 @@
     <ul>
       <li *ngFor="let item of messages">{{item}}</li>
     </ul>
-  </ion-grid>
-	<h2>Current Latitude: {{locationTracker.lat}}</h2>
+  </ion-grid>-->
+	<!--<h2>Current Latitude: {{locationTracker.lat}}</h2>
 	<h2>Current Longitude: {{locationTracker.lng}}</h2>
 	<h2>Current Speed: {{locationTracker.speed}}</h2>
 	<button ion-button full primary (click)="start()">Start Tracking</button>
-	<button ion-button full primary (click)="stop()">Stop Tracking</button>
-	<div *ngIf="locationTracker.lat">
+	<button ion-button full primary (click)="stop()">Stop Tracking</button>-->
+	
+	
+	<!--<div *ngIf="locationTracker.lat">
 	<agm-map [latitude]="locationTracker.lat" [longitude]="locationTracker.lng">
   <agm-marker [latitude]="locationTracker.lat" [longitude]="locationTracker.lng"></agm-marker>
 </agm-map>
-	</div>
+	</div>-->
+	<div #map id="map" style="height:100%;"></div>
+
 </ion-content>
