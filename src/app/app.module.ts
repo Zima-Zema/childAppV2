@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http'
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { AgmCoreModule } from '@agm/core';
+//import { AgmCoreModule } from '@agm/core';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LocationTracker } from '../providers/location-tracker';
@@ -15,7 +15,7 @@ import { IonicStorageModule } from "@ionic/Storage";
 import { TrackApi } from '../pages/shared/track-api.service'
 import {ChildProfilePage} from '../pages/child-profile/child-profile';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile'
-
+import { BackgroundMode } from "@ionic-native/background-mode";
 @NgModule({
   declarations: [
     MyApp,
@@ -29,9 +29,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile'
     HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAIGe8eBqbx4tql6fX-mMgrMTYZVMeUDh4'
-    })
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -48,6 +46,7 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile'
     StatusBar,
     SplashScreen,
     TrackApi,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

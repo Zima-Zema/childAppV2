@@ -6,7 +6,154 @@
 
 </ion-header>
 
-
 <ion-content padding>
+
+  <form [formGroup]="profileForm" (ngSubmit)="DoneEditProfile()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">First Name</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="fname" formControlName="fname"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('fname').touched || 
+                                                         profileForm.get('fname').dirty)  &&
+                                                         profileForm.get('fname').errors">
+                            <span *ngIf="profileForm.get('fname').errors.required">
+                                *(Required)
+                                <br/>
+                            </span>
+      <span *ngIf="!profileForm.controls.fname.valid">
+                                
+                                Characters Only!!
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">Last Name</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="lname" formControlName="lname"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('lname').touched || 
+                                                         profileForm.get('lname').dirty)  &&
+                                                         profileForm.get('lname').errors">
+                            <span *ngIf="profileForm.get('lname').errors.required">
+                                *(Required)
+                                <br/>
+                            </span>
+      <span *ngIf="!profileForm.controls.lname.valid">                               
+                                Characters Only!!
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">Email</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="email" formControlName="email"></ion-input>
+          <ion-item *ngIf="!profileForm.controls.email.valid && 
+        !profileForm.controls.email.pending && 
+        (profileForm.controls.email.dirty || submitAttempt)">
+            <p>Sorry, that Email can not be used!</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">password</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" type="password" [(ngModel)]="password" formControlName="password"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('password').touched || 
+                                                         profileForm.get('password').dirty)  &&
+                                                         profileForm.get('password').errors">
+                            <span *ngIf="profileForm.get('password').errors.required">
+                                *(Required)
+                                <br/>
+                            </span>
+      <span *ngIf="!profileForm.controls.password.valid">
+                                Password Should be 4 characters at least.
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">Telephone</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="telephone" formControlName="telephone"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('telephone').touched || 
+                                                         profileForm.get('telephone').dirty)  &&
+                                                         profileForm.get('telephone').errors">
+                            <span *ngIf="profileForm.get('telephone').errors.required">
+                                *(Required)
+                                <br/>
+                            </span>
+      <span *ngIf="!profileForm.controls.telephone.valid">
+                                should start with 01, Numbers Only
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">Street</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="street" formControlName="street"></ion-input>
+        </ion-col>
+      </ion-row>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">City</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="city" formControlName="city"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('city').touched || 
+                                                         profileForm.get('city').dirty)  &&
+                                                         profileForm.get('city').errors">
+                            <span *ngIf="!profileForm.controls.city.valid">                               
+                                Characters Only!!
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <label class="lbl_fixed">Country</label>
+        </ion-col>
+        <ion-col>
+          <ion-input class="txt" type="text" [(ngModel)]="country" formControlName="country"></ion-input>
+        </ion-col>
+      </ion-row>
+      <span class="help-block" *ngIf="(profileForm.get('country').touched || 
+                                                         profileForm.get('country').dirty)  &&
+                                                         profileForm.get('country').errors">
+
+                            <span *ngIf="!profileForm.controls.country.valid">                               
+                                Characters Only!!
+                            </span>
+      </span>
+      <!-- ///////////////////////////////////////////////////////////// -->
+      <ion-row>
+        <ion-col>
+          <button ion-button full color="secondary" type="submit" [disabled]="!profileForm.valid">Save Changes</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
 
 </ion-content>
