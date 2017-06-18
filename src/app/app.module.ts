@@ -13,12 +13,16 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LoginPage } from '../pages/login/login'
 import { IonicStorageModule } from "@ionic/Storage";
 import { TrackApi } from '../pages/shared/track-api.service'
+import {ChildProfilePage} from '../pages/child-profile/child-profile';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile'
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    ChildProfilePage,
+    EditProfilePage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { TrackApi } from '../pages/shared/track-api.service'
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    ChildProfilePage,
+    EditProfilePage
   ],
   providers: [
     LocationTracker,

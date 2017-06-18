@@ -1,0 +1,90 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>child-profile</ion-title>
+  </ion-navbar>
+<ion-toolbar color="light">
+        <ion-buttons end>               
+                <button ion-button  color="secondary" (click)="EditProfile()"> <ion-icon ios="ios-brush" md="md-brush"></ion-icon> </button>              
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ <ion-grid id="grid">
+    <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">First Name</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="fname"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{fname}}</label>
+      </ion-col>
+    </ion-row>
+
+ <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">Last Name</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="lname"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{lname}}</label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">Email</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="email"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{email}}</label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">Street</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="street"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{street}}</label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">City</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="city"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{city}}</label>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <label class="lbl_fixed">Country</label>
+      </ion-col>
+      <ion-col>
+        <label class="lbl" hidden>[(ngModel)]="country"</label>
+      </ion-col>
+      <ion-col>
+        <label>{{country}}</label>
+      </ion-col>
+    </ion-row>
+ </ion-grid>
+</ion-content>

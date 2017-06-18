@@ -3,6 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { LocationTracker } from '../../providers/location-tracker';
 import * as io from 'socket.io-client';
 import { Storage } from '@ionic/Storage';
+import { EditProfilePage } from '../edit-profile/edit-profile';
 
 @Component({
   selector: 'page-home',
@@ -21,55 +22,55 @@ export class HomePage {
   ) {
 
     console.log("constructor")
-let loader = this.loadingCtrl.create({
+    let loader = this.loadingCtrl.create({
       content: 'Loading...',
       duration: 10000,
-      dismissOnPageChange:true
+      dismissOnPageChange: true
     });
 
-    loader.present().then(()=>{
+    loader.present().then(() => {
       storage.get('child').then((val) => {
-      // console.log('Your name is', val);
-      this.selectedChild = val;
-      console.log(this.selectedChild);
-      loader.dismiss();
+        // console.log('Your name is', val);
+        this.selectedChild = val;
+        console.log(this.selectedChild);
+        loader.dismiss();
 
-    });
+      });
 
     })
 
 
   }
   ionViewWillEnter() {
-let loader = this.loadingCtrl.create({
+    let loader = this.loadingCtrl.create({
       content: 'Loading...',
       duration: 10000,
-      dismissOnPageChange:true
+      dismissOnPageChange: true
     });
 
-    loader.present().then(()=>{
+    loader.present().then(() => {
       this.storage.get('child').then((val) => {
-      // console.log('Your name is', val);
-      this.selectedChild = val;
-      console.log(this.selectedChild);
-      loader.dismiss();
-      this.socket = io.connect("http://realtimetrack.eu-2.evennode.com/");
-    console.log("ionViewWillEnter");
-    this.socket.on('connect', () => {
-      console.log("from child app", this.selectedChild.id);
-      console.log("from child app>>Obj", this.selectedChild);
+        // console.log('Your name is', val);
+        this.selectedChild = val;
+        console.log(this.selectedChild);
+        loader.dismiss();
+        this.socket = io.connect("http://realtimetrack.eu-2.evennode.com/");
+        console.log("ionViewWillEnter");
+        this.socket.on('connect', () => {
+          console.log("from child app", this.selectedChild.id);
+          console.log("from child app>>Obj", this.selectedChild);
 
-      // write on stream !! Event "JOIN"
-      this.socket.emit('joinChild', this.selectedChild.id);
-    })
-    this.socket.on('message', data => {
-      this.messages.push(data);
+          // write on stream !! Event "JOIN"
+          this.socket.emit('joinChild', this.selectedChild.id);
+        })
+        this.socket.on('message', data => {
+          this.messages.push(data);
+        })
+
+      });
+
     })
 
-    });
-
-    })
-    
 
 
   }
@@ -87,6 +88,10 @@ let loader = this.loadingCtrl.create({
 
   stop() {
     this.locationTracker.stopTracking();
+  }
+
+  profile() {
+    this.navCtrl.push(EditProfilePage);
   }
 
 }
