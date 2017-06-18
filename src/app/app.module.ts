@@ -13,13 +13,16 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LoginPage } from '../pages/login/login'
 import { IonicStorageModule } from "@ionic/Storage";
 import { TrackApi } from '../pages/shared/track-api.service'
-import { GoogleMaps } from '@ionic-native/google-maps'
-import { BackgroundMode } from '@ionic-native/background-mode';
+import {ChildProfilePage} from '../pages/child-profile/child-profile';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile'
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    ChildProfilePage,
+    EditProfilePage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { BackgroundMode } from '@ionic-native/background-mode';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    ChildProfilePage,
+    EditProfilePage
   ],
   providers: [
     LocationTracker,

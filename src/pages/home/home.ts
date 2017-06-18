@@ -3,11 +3,11 @@ import { NavController, LoadingController, Events, ToastController } from 'ionic
 import { LocationTracker } from '../../providers/location-tracker';
 import * as io from 'socket.io-client';
 import { Storage } from '@ionic/Storage';
-//import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, CameraPosition, MarkerOptions, Marker } from '@ionic-native/google-maps';
-import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
-import {TrackApi} from '../shared/track-api.service'
-import { Geolocation } from '@ionic-native/geolocation';
-import { BackgroundMode } from '@ionic-native/background-mode';
+import { EditProfilePage } from '../edit-profile/edit-profile';
+import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
+import { BackgroundMode } from "@ionic-native/background-mode";
+import { TrackApi } from "../shared/track-api.service";
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -78,7 +78,6 @@ export class HomePage {
   }
   /////////////////////////////////////////////////////////////////////////
   ionViewWillEnter() {
-
     let loader = this.loadingCtrl.create({
       content: 'Loading...',
       duration: 10000,
@@ -97,7 +96,14 @@ export class HomePage {
         loader.dismiss();
         this.socket = io.connect("http://realtimetrack.eu-2.evennode.com/");
         this.socket.on('connect', () => {
+          console.log("from child app", this.selectedChild.id);
+          console.log("from child app>>Obj", this.selectedChild);
+
+          // write on stream !! Event "JOIN"
           this.socket.emit('joinChild', this.selectedChild.id);
+        })
+        this.socket.on('message', data => {
+          this.messages.push(data);
         })
 
       });
@@ -124,6 +130,10 @@ export class HomePage {
   ///////////////////////////////////////////////////////////////////////////
 
  
+
+  profile() {
+    this.navCtrl.push(EditProfilePage);
+  }
 
 }
 
