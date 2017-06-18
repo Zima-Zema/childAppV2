@@ -19,7 +19,10 @@ export class ChildProfilePage {
   country: string = '';
 selectedchild:any=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController,
+   public navParams: NavParams, 
+   private storage: Storage, 
+   private loadingCtrl: LoadingController) {
 storage.get('child').then((val) => {
       console.log('child profile ', val);
       this.selectedchild = val;
