@@ -32,8 +32,9 @@ export class LocationTracker {
       debug: true,
       interval: 2000,
       stopOnTerminate:false,
-      startOnBoot:true
-      //url:'',
+      startOnBoot:true,
+      url:'https://childappv2-8fdff.firebaseio.com/Locations/-KmrkaAgaxbDSpL0eaV4.json',
+      httpHeaders:{'Content-Type':'application/json; charset=utf-8'}
     };
 
     this.backgroundGeolocation.configure(config).subscribe((location) => {

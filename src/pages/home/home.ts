@@ -3,7 +3,7 @@ import { NavController, LoadingController, Events, ToastController } from 'ionic
 import { LocationTracker } from '../../providers/location-tracker';
 import * as io from 'socket.io-client';
 import { Storage } from '@ionic/Storage';
-import { EditProfilePage } from '../edit-profile/edit-profile';
+import { ChildProfilePage } from '../child-profile/child-profile';
 import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
 import { BackgroundMode } from "@ionic-native/background-mode";
 import { TrackApi } from "../shared/track-api.service";
@@ -132,7 +132,7 @@ export class HomePage {
  
 
   profile() {
-    this.navCtrl.push(EditProfilePage);
+    this.navCtrl.push(ChildProfilePage);
   }
 
 }

@@ -85,9 +85,10 @@ export class LoginPage {
           this.storage.clear();
           this.storage.set('child', this.selectedChild);
           console.log("selectedChild", this.selectedChild);
+          loader.dismiss();
           this.navCtrl.setRoot(HomePage);
           this.navCtrl.popToRoot();
-          loader.dismiss();
+          
         }
         else {
           this.msg = "Wrong Email Or Password";

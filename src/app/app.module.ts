@@ -15,7 +15,7 @@ import { IonicStorageModule } from "@ionic/Storage";
 import { TrackApi } from '../pages/shared/track-api.service'
 import {ChildProfilePage} from '../pages/child-profile/child-profile';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile'
-
+import { BackgroundMode } from "@ionic-native/background-mode";
 @NgModule({
   declarations: [
     MyApp,
@@ -46,7 +46,6 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile'
     StatusBar,
     SplashScreen,
     TrackApi,
-    GoogleMaps,
     BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
