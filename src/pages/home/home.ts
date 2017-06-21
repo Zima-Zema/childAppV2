@@ -7,6 +7,7 @@ import { ChildProfilePage } from '../child-profile/child-profile';
 import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
 import { BackgroundMode } from "@ionic-native/background-mode";
 import { TrackApi } from "../shared/track-api.service";
+import { LoginPage} from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -133,6 +134,11 @@ export class HomePage {
 
   profile() {
     this.navCtrl.push(ChildProfilePage);
+  }
+
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.popToRoot();
   }
 
 }
