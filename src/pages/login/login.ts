@@ -4,7 +4,7 @@ import { HomePage } from '../home/home'
 import { Storage } from '@ionic/Storage';
 //import { Storage } from '@ionic/storage';
 
-import { TrackApi, IChild } from '../shared/track-api.service';
+import { TrackApi, IChild, ILogin } from '../shared/track-api.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
@@ -39,25 +39,13 @@ export class LoginPage {
     });
     //this.menuCtrl.enable(false, 'myMenu');
     //Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')
-    let loader = this.loadingCtrl.create({
-      content: 'Loading...',
-      duration: 5000,
-    });
 
-    loader.present().then(() => {
-      storage.get('child').then((val) => {
-        // console.log('Your name is', val);
-        this.selectedChild = val;
-        console.log(this.selectedChild);
-        if (this.selectedChild != undefined) {
-          this.navCtrl.setRoot(HomePage);
-          this.navCtrl.popToRoot();
-          loader.dismiss();
-        }
+  }
 
-      });
 
-    })
+  login: ILogin = {
+    email: "",
+    password: ""
   }
 
   ionViewDidLoad() {
@@ -66,9 +54,8 @@ export class LoginPage {
   }
   //
   GoToMychild() {
-    let email = this.loginForm.value.email;
-    let pass = this.loginForm.value.password;
-    console.log(email + " - " + pass)
+    this.login.email = this.loginForm.value.email
+    this.login.password = this.loginForm.value.password
     let loader = this.loadingCtrl.create({
       content: 'Logging In...',
       duration: 10000,
@@ -76,36 +63,56 @@ export class LoginPage {
     });
 
     loader.present().then(() => {
-      this.trackApi.getChilds().subscribe(data => {
+      this.trackApi.loginChild(this.login).subscribe((data) => {
         // if(data){
-        this.childs = data;
-        this.selectedChild = this.childs.find(p => p.email.toLowerCase() == email.toLowerCase() && p.password == pass)
-        if (this.selectedChild != undefined) {
+
+        this.selectedChild = data
+        if (this.selectedChild) {
           //this.store.set('userId', this.selectedParent.id);
           this.storage.clear();
           this.storage.set('child', this.selectedChild);
           console.log("selectedChild", this.selectedChild);
-          loader.dismiss();
           this.navCtrl.setRoot(HomePage);
           this.navCtrl.popToRoot();
-          
-        }
-        else {
-          this.msg = "Wrong Email Or Password";
           loader.dismiss();
+
+
         }
-        // }
-        // else{
-        //   this.msg = "Connection TimeOut Try Again Later.";
-        //   loader.dismiss();
-        // }
+
+
+      }, (err) => {
+        switch (err.status) {
+          // case 0:
+          //   this.msg = "Check Your Internet.";
+          //   loader.dismiss();
+          //   break;
+          case 408:
+            this.msg = "Connection TimeOut.";
+            loader.dismiss();
+            break;
+          case 400:
+            this.msg = "Bad Request.";
+            loader.dismiss();
+            break;
+          case 404:
+            this.msg = "Wrong Email Or Password.";
+            loader.dismiss();
+            break;
+          case 403:
+            this.msg = "FORBIDDEN.";
+            loader.dismiss();
+            break;
+          default:
+            this.msg = "Somting Went Wrong. Please Check Your Connection.";
+            loader.dismiss();
+            break;
+        }
+
+
+
 
       })
     })
-
-    // loader.onDidDismiss(()=>{
-    //    this.msg = "Connection TimeOut Try Again Later.";
-    // })
 
 
   }

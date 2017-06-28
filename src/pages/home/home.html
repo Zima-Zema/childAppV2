@@ -1,5 +1,9 @@
 <ion-header>
+
 	<ion-navbar color="secondary">
+		    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
 	  <ion-title>
 	    Location Tracker
 	  </ion-title>
@@ -32,7 +36,7 @@
 </agm-map>
 	</div>-->
 
-	<button ion-button full primary (click)="profile()">Profile</button>
-	<div #map id="map" style="height:100%;"></div>
+<button ion-button full danger (click)="SOS()">S.O.S</button>
+	
 
 </ion-content>

@@ -1,1 +1,16 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu id="myMenu" [content]="content">
+   <ion-toolbar>
+      <ion-title>Child Tracking</ion-title>
+    </ion-toolbar>
+
+  <ion-content>
+    <ion-list>
+      <ion-list-header>Navigate</ion-list-header>
+    <button menuClose ion-item (click)="profile()">Profile</button>
+      <button menuClose ion-item (click)="logout()" >Log Out</button>  
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

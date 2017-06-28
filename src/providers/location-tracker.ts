@@ -27,8 +27,8 @@ export class LocationTracker {
 
     let config = {
       desiredAccuracy: 0,
-      stationaryRadius: 5,
-      distanceFilter: 1, 
+      stationaryRadius: 15,
+      distanceFilter: 10, 
       debug: true,
       interval: 2000,
       stopOnTerminate:false,
@@ -57,13 +57,16 @@ export class LocationTracker {
 
     // Turn ON the background-geolocation system.
     this.backgroundGeolocation.start();
-
-  }
+    this.backgroundGeolocation.onStationary().then(value=>{
+      
+    })
+ }
+ 
 
   stopTracking() {
 
     console.log('stopTracking');
-
+    this.backgroundGeolocation.stop();
     this.backgroundGeolocation.finish();
     //this.watch.unsubscribe();
 
