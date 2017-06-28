@@ -2,7 +2,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>child-profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 <ion-toolbar color="light">
         <ion-buttons end>               
@@ -15,6 +15,12 @@
 
 <ion-content padding>
  <ion-grid id="grid">
+
+<ion-row>
+    <img class="image" [src]="captureDataUrl" *ngIf="captureDataUrl" round/>
+  </ion-row>
+
+
     <ion-row>
       <ion-col>
         <label class="lbl_fixed">First Name</label>

@@ -8,6 +8,7 @@ import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
 import { BackgroundMode } from "@ionic-native/background-mode";
 import { TrackApi, IHistory } from "../shared/track-api.service";
 import { Geolocation } from '@ionic-native/geolocation';
+import { LoginPage } from "../login/login";
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -149,5 +150,10 @@ export class HomePage {
 
 
   }
+  logout(){
+    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.popToRoot();
+  }
+
 }
 

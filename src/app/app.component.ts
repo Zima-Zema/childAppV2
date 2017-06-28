@@ -8,7 +8,7 @@ import { HomePage } from "../pages/home/home";
 import { TrackApi } from "../pages/shared/track-api.service";
 import { ChildProfilePage } from "../pages/child-profile/child-profile";
 import { Storage } from '@ionic/Storage';
-
+import firebase from 'firebase';
 //import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
@@ -66,6 +66,18 @@ export class MyApp {
       });
 
 
+      statusBar.styleDefault();
+      splashScreen.hide();
+      this.backgroundMode.enable();
+            let config = {
+        apiKey: "AIzaSyDohpBfcMQaDLWsfeYnULxdfSxVzfLy-SI",
+        authDomain: "myapp-891c4.firebaseapp.com",
+        databaseURL: "https://myapp-891c4.firebaseio.com",
+        projectId: "myapp-891c4",
+        storageBucket: "myapp-891c4.appspot.com",
+        messagingSenderId: "1034732611687"
+      };
+      firebase.initializeApp(config);
     });
   }
 
