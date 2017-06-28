@@ -19,6 +19,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.backgroundMode.enable();
+            let config = {
+        apiKey: "AIzaSyDohpBfcMQaDLWsfeYnULxdfSxVzfLy-SI",
+        authDomain: "myapp-891c4.firebaseapp.com",
+        databaseURL: "https://myapp-891c4.firebaseio.com",
+        projectId: "myapp-891c4",
+        storageBucket: "myapp-891c4.appspot.com",
+        messagingSenderId: "1034732611687"
+      };
+      firebase.initializeApp(config);
     });
   }
 }
